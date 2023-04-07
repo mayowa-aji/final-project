@@ -1,12 +1,13 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 import './App.css';
-
-import NavBar from './components/NavBar';
+import HomePage from './components/HomePage';
 
 const App = () => {
   return (
     <div>
-        <NavBar/>
+        <HomePage/>
     </div>
   );
 }

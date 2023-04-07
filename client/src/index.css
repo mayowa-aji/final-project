@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 
 
 *, *::before, *::after {
@@ -14,8 +15,10 @@ html, body {
 }
 
 body {
-  font-family: 'Roboto', sans-serif !important;
-  line-height: 1.5;
+  font-family: 'Varela Round', sans-serif !important;
+  line-height: 1.6rem;
+  color: #999;
+  letter-spacing: 2px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -30,9 +33,5 @@ input, button, textarea, select {
 
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
-}
-
-#root, #__next {
-  isolation: isolate;
 }
 
