@@ -1,0 +1,26 @@
+.carousel {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+}
+
+
+.my-carousel .carousel-item {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.my-carousel .carousel-control-prev-icon,
+.my-carousel .carousel-control-next-icon {
+  filter: invert(100%);
+}
+
+.my-carousel .carousel-control-prev,
+.my-carousel .carousel-control-next {
+  width: 5%;
+}
