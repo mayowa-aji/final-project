@@ -50,7 +50,7 @@ const NavBar = () => {
           </Nav.Link>
         </Nav>
         <Nav className="ml-auto ">
-            <Nav.Link href="/search"><i className="fa fa-search"></i></Nav.Link>
+            <Nav.Link href="/search" className="px-4"><i className="fa fa-search"></i></Nav.Link>
             <Nav.Link className="px-4" onClick={() => setShowLogin(true)}>ACCOUNT</Nav.Link>
           </Nav>
       </Navbar.Collapse>
