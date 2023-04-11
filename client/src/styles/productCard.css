@@ -9,17 +9,23 @@
     width: calc(33.33% - 1rem);
     margin-bottom: 1rem;
   }
+
 }
 
 @media (max-width: 767px) {
   .product-card {
     width: 100%;
   }
-}
-@media (max-width: 576px) {
   .center-mobile {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
   }
 }
+/* @media (max-width: 576px) {
+  .center-mobile {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+} */

@@ -1,0 +1,34 @@
+img {
+  border-top-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+}
+
+.container-padding {
+  padding-left:7rem;
+  padding-right:7rem;
+}
+
+.left-paragraph-padding{
+  padding-left:3rem;
+  padding-right:3rem;
+}
+.right-paragraph-padding{
+  /* padding-left:3rem; */
+  padding-right:3rem;
+}
+@media (max-width: 768px) {
+  .container-padding {
+    padding-left:4rem;
+    padding-right:4rem
+  }
+
+  .left-paragraph-padding{
+    padding-left:0rem;
+    padding-right:0rem;
+  }
+
+  .right-paragraph-padding{
+    padding-left:0rem;
+    padding-right:0rem;
+  }
+}

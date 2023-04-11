@@ -1,9 +1,9 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import CustomBtn from './CustomBtn';
-import '../styles/productCard.css'
+import '../styles/productCard.css';
 
-const ProductList = () => {
+const BodyButterProductList = () => {
   const products = [
     { id: 1, name: 'Charcoal Soap', price: 10.00, imageUrl: 'https://images.squarespace-cdn.com/content/v1/52594417e4b030e5f06cf43c/1427166993792-AV6LQ2ZNZ0XKNBPG7KIY/CharcoalSoap.jpg?format=500w' },
     { id: 2, name: 'Fresh Woodland Soap', price: 10.00, imageUrl: 'https://images.squarespace-cdn.com/content/v1/52594417e4b030e5f06cf43c/1383223537639-NGJFBOKH8D0JZWVPAUT4/Fire_Soap.jpg?format=500w' },
@@ -12,7 +12,7 @@ const ProductList = () => {
 
   return (
     <>
-    <h3 style={{textAlign:'center', paddingTop:'0.5rem', paddingBottom:'1.5rem'}}>Shop our best selling soaps</h3>
+    <h3 style={{textAlign:'center', paddingTop:'1.5rem', paddingBottom:'1.5rem'}}>Shop our best selling Body Butters</h3>
     <div className="d-flex justify-content-center">
       <div className="row center-mobile">
       {products.map(product => (
@@ -35,4 +35,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default BodyButterProductList;
