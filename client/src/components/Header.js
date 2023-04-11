@@ -8,7 +8,6 @@ const Header = () => {
     <div>
       <Brand />
       <NavBar />
-
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Press = () => {
 
   return (
     <>
-     <div style ={{paddingLeft:'3rem', paddingRight:'3rem'}}>
+     <div style ={{paddingLeft:'3rem', paddingRight:'3rem', paddingBottom:'3rem'}}>
     <h3 style ={{paddingTop:'2rem'}}>As seen on ...</h3>
     <div className="gallery" >
     {images.map((image, index) => (

@@ -1,0 +1,17 @@
+img{
+  border-top-right-radius: 0rem;
+  border-top-left-radius: 0rem;
+}
+
+.container-padding {
+  padding-left:18rem;
+  padding-right:18rem;
+}
+
+@media (max-width: 768px) {
+  .container-padding {
+    padding-left:4rem;
+    padding-right:4rem
+  }
+}
+
