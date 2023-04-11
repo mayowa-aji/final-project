@@ -101,7 +101,7 @@
 const Ingredients = () => {
   return (
     <>
-      <div className='container-padding'>
+      <div className='ingredient-padding'>
         <Container fluid>
           {ingredientsData.map((ingredient, index) => (
             <Row key={index} style={{ paddingTop: '2rem' }}>

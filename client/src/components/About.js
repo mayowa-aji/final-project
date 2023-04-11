@@ -6,7 +6,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 const About = () => {
   return (
     <>
-    <div className='container-padding'>
+    <div className='about-padding'>
        <h4 style={{paddingTop:'2.5rem', paddingBottom:'1rem'}}>THE FLO+THEO STORYs</h4>
        <p>
        FLO+THEO founded in Queens, NY formulates 100% vegan skin care products, utilizing only the freshest ingredients suitable even for the most delicate skin.  The conception of FLO+THEO grew out a real need, that of the founders to find suitable products for their sensitive skin.  Through years of research, learning and experimentation, they were able to create nutritious and beneficial formulations. The creation of FLO+THEO brings together the founders love for creativity, innovation and healthy skin care.

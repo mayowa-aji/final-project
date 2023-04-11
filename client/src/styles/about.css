@@ -3,9 +3,10 @@ img {
   border-top-left-radius: 2rem;
 }
 
-.container-padding {
-  padding-left:7rem;
-  padding-right:7rem;
+.about-padding {
+  padding-left:13rem;
+  padding-right:11rem;
+  padding-bottom: 2rem;
 }
 
 .left-paragraph-padding{
@@ -17,7 +18,7 @@ img {
   padding-right:3rem;
 }
 @media (max-width: 768px) {
-  .container-padding {
+  .about-padding {
     padding-left:4rem;
     padding-right:4rem
   }

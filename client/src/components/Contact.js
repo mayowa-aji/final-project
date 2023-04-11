@@ -9,7 +9,7 @@ const Contact = () => {
     <>
       <Container>
 
-      <div className='container-padding'>
+      <div className='contact-padding'>
         <Ingredient image ='https://images.squarespace-cdn.com/content/v1/52594417e4b030e5f06cf43c/1383138035490-JPI2GOQ51TBRHJAPH65G/IMG_9116+%281%29.JPG?format=1000w' headline ='Contact Us' description = " We can't wait to hear from you!"/>
       <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -10,6 +10,7 @@ import About from './components/About';
 import Ingredients from './components/Ingredients'
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Faq from './components/Faq';
 
 const App = () => {
   return (
@@ -27,6 +28,9 @@ const App = () => {
       </Route>
       <Route path ="/contact">
         <Contact />
+      </Route>
+      <Route path ="/faq">
+        <Faq />
       </Route>
       <Route path ="*">
         <h3>404 Page not found</h3>
