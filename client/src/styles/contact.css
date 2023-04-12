@@ -1,0 +1,19 @@
+img{
+  border-top-right-radius: 0rem;
+  border-top-left-radius: 0rem;
+}
+
+.contact-padding {
+  padding-left:9rem;
+  padding-right:9rem;
+  padding-bottom: 3rem;
+
+}
+
+@media (max-width: 768px) {
+  .contact-padding {
+    padding-left:4rem;
+    padding-right:4rem
+  }
+}
+
