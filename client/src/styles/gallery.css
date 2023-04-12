@@ -1,0 +1,23 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gallery-item {
+  width: calc(100% / 6 - 1rem);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    width: calc(100% / 3 - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item {
+    width: calc(100% / 2 - 1rem);
+  }
+}

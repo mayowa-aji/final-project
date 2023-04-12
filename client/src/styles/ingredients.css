@@ -1,0 +1,14 @@
+
+.ingredient-padding {
+  padding-left:13rem;
+  padding-right:13rem;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .ingredient-padding {
+    padding-left:4rem;
+    padding-right:4rem
+  }
+}

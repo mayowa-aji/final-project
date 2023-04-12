@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './NavBar';
 import Brand from './Brand';
 
+
 const Header = () => {
   return (
     <div>
@@ -9,7 +10,7 @@ const Header = () => {
       <NavBar />
     </div>
   );
-}
+};
 
 export default Header;
 

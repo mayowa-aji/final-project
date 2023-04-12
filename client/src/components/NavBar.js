@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavDropdown, Modal, Button, Form } from 'react-bootstrap';
 import '../styles/navbar.css';
 
@@ -32,25 +33,25 @@ const NavBar = () => {
         className={`justify-content-center ${expanded ? 'show' : ''}`}
       >
         <Nav className="mr-auto">
-          <Nav.Link href="/" className="px-4">
+          <Nav.Link as={Link} to="/" className="px-4">
             HOME
           </Nav.Link>
           <NavDropdown className="px-4" title="SHOP" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/">SHOP ALL</NavDropdown.Item>
-            <NavDropdown.Item href="/">BAR SOAPS</NavDropdown.Item>
-            <NavDropdown.Item href="/">BODY OILS</NavDropdown.Item>
-            <NavDropdown.Item href="/">MEN</NavDropdown.Item>
+            <NavDropdown.Item as={Link}to="/">SHOP ALL</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/">BAR SOAPS</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/">BODY OILS</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/">MEN</NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="/ingredients"  className="px-4">ABOUT</Nav.Link>
-          <Nav.Link href="/" className="px-4">
+          <Nav.Link as={Link} to="/about"  className="px-4">ABOUT</Nav.Link>
+          <Nav.Link as={Link} to="/ingredients" className="px-4">
             INGREDIENTS
           </Nav.Link>
-          <Nav.Link href="/" className="px-4">
+          <Nav.Link as={Link} to="/contact" className="px-4">
             CONTACT
           </Nav.Link>
         </Nav>
         <Nav className="ml-auto ">
-            <Nav.Link href="/search" className="px-4"><i className="fa fa-search"></i></Nav.Link>
+            <Nav.Link  as={Link} to="/search" className="px-4"><i className="fa fa-search"></i></Nav.Link>
             <Nav.Link className="px-4" onClick={() => setShowLogin(true)}>ACCOUNT</Nav.Link>
           </Nav>
       </Navbar.Collapse>
