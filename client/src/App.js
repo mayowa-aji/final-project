@@ -11,6 +11,8 @@ import Ingredients from './components/Ingredients'
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Faq from './components/Faq';
+import ShopAll from './components/ShopAll';
+import SoapViewer from './components/SoapViewer';
 
 const App = () => {
   return (
@@ -25,6 +27,12 @@ const App = () => {
       </Route>
       <Route path ="/ingredients">
         <Ingredients />
+      </Route>
+      <Route path ="/shop-all">
+        <ShopAll />
+      </Route>
+      <Route path ="/shop-soaps">
+        <SoapViewer />
       </Route>
       <Route path ="/contact">
         <Contact />
