@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { ProductContext } from '../contexts/productContext';
 import ProductCard from './ProductCard';
 
-const SoapViewer = () => {
+const BodyOilsPage = () => {
   const { products } = useContext(ProductContext);
 
   return (
     <div>
       {products
-        .filter((product) => product.category === 'Soap')
+        .filter((product) => product.category === 'Body Oil')
         .map((product) => (
           <ProductCard
             key={product.id}
@@ -21,4 +21,4 @@ const SoapViewer = () => {
   );
 };
 
-export default SoapViewer;
+export default BodyOilsPage;
