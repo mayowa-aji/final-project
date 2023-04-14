@@ -1,4 +1,4 @@
-import { ProductContext } from '../contexts/productContext';
+import { ProductContext } from '../contexts/ProductContext';
 import ProductCard from './ProductCard';
 import CustomBtn from './CustomBtn';
 

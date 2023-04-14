@@ -321,16 +321,41 @@ class Login(Resource):
       email = request.json.get('email')
       print(email)
       password = request.json.get('password')
+      print(password)
 
       customer = Customer.query.filter(Customer.email==email).first()
       print(customer)
       if not customer or not customer.verify_password(password):
-        return jsonify(None), 401
+        return make_response(jsonify(None), 401)
 
     # Login successful, return customer data
-      return jsonify(customer.to_dict())
+      return make_response(jsonify(customer.to_dict()),200)
 
 api.add_resource(Login, '/login')
+
+class Register(Resource):
+   def post(self):
+      try:
+        request_json = request.get_json()
+
+
+        new_customer =  Customer(
+          first_name=request_json['first_name'],
+          last_name=request_json['last_name'],
+          email=request_json['email'],
+          password=request_json["password"]
+          )
+        db.session.add(new_customer)
+        db.session.commit()
+        return make_response("Register Successful", 200)
+      except (PermissionError):
+         return make_response("Registration Failed",401)
+
+api.add_resource(Register, '/register')
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

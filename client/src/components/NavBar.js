@@ -1,92 +1,85 @@
-import { React, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Navbar, NavDropdown, Modal, Button, Form } from 'react-bootstrap';
-import '../styles/navbar.css';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
-const NavBar = () => {
+import { LoginContext } from '../contexts/LoginContext.js';
+import { CartContext } from '../contexts/CartContext';
+import { CustomerContext } from '../contexts/CustomerContext';
+
+const NavigationBar = () => {
   const [expanded, setExpanded] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const { setShowLogin, showLogin } = useContext(LoginContext);
+  const { setShowCart } = useContext(CartContext);
+  const { customer, setCustomer } = useContext(CustomerContext);
+  const navigate = useNavigate();
 
+  const Logout = () => {
+    setCustomer(undefined);
+    navigate('/');
+  };
 
-  const handleLoginClose = () => {
-    setShowLogin(false);
-    setUsername('');
-    setPassword('');
-  }
-
-  const handleLoginSubmit = () => {
-    // Handle login logic here
-    console.log(`Username: ${username}, Password: ${password}`);
-    handleLoginClose();
-  }
   return (
-    <>
     <Navbar expand="md">
       <Navbar.Toggle
         aria-controls="responsive-navbar-nav"
         onClick={() => setExpanded(expanded ? false : 'expanded')}
-        className="ml-auto" />
+        className="ml-auto"
+      />
       <Navbar.Collapse
         id="responsive-navbar-nav"
-        className={`justify-content-center ${expanded ? 'show' : ''}`}
-      >
+        className={`justify-content-center ${expanded ? 'show' : ''}`}>
         <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/" className="px-4">
-            HOME
+          <Nav.Link className="px-4" onClick={() => navigate('/')}>
+            Home
           </Nav.Link>
-          <NavDropdown className="px-4" title="SHOP" id="basic-nav-dropdown">
-            <NavDropdown.Item as={Link}to="/shop-all">SHOP ALL</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/shop-soaps">BAR SOAPS</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/shop-body-oil">BODY OILS</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/shop-men">MEN</NavDropdown.Item>
+          <NavDropdown title="Shop" id="basic-nav-dropdown">
+            <NavDropdown.Item onClick={() => navigate('/shop')}>
+              Shop All
+            </NavDropdown.Item>
+            <NavDropdown.Item onClick={() => navigate('/shop-soaps')}>
+              Bar Soaps
+            </NavDropdown.Item>
+            <NavDropdown.Item onClick={() => navigate('/shop-body-oil')}>
+              Body Oils
+            </NavDropdown.Item>
+            <NavDropdown.Item onClick={() => navigate('/shop-men')}>
+              Men
+            </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link as={Link} to="/about"  className="px-4">ABOUT</Nav.Link>
-          <Nav.Link as={Link} to="/ingredients" className="px-4">
-            INGREDIENTS
+          <Nav.Link className="px-4" onClick={() => navigate('/about')}>
+            About
           </Nav.Link>
-          <Nav.Link as={Link} to="/contact" className="px-4">
-            CONTACT
+          <Nav.Link className="px-4" onClick={() => navigate('/ingredients')}>
+            Ingredients
+          </Nav.Link>
+          <Nav.Link className="px-4" onClick={() => navigate('/contact')}>
+            Contact
           </Nav.Link>
         </Nav>
+        <Nav.Link className="px-4" onClick={() => navigate('/search')}>
+          <i className="fa fa-search"></i>
+        </Nav.Link>
         <Nav className="ml-auto ">
-            <Nav.Link  as={Link} to="/search" className="px-4"><i className="fa fa-search"></i></Nav.Link>
-            <Nav.Link className="px-4" onClick={() => setShowLogin(true)}>ACCOUNT</Nav.Link>
-          </Nav>
+          {customer ? (
+            <NavDropdown
+              title={`Logout, ${customer.first_name}?`}
+              id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={Logout}>Logout</NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <Nav.Link
+              onClick={() => {
+                setShowLogin(true);
+                console.log(showLogin)
+              }}>
+              Login/Register
+            </Nav.Link>
+          )}
+          <Nav.Link onClick={() => setShowCart(true)}>Cart</Nav.Link>
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
-    <Modal show={showLogin} onHide={handleLoginClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <p>Please enter your username and password.</p>
-          <Form>
-            <Form.Group controlId="formUsername">
-              <Form.Label className='mt-1'>Username</Form.Label>
-              <Form.Control className=' rounded-0' type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            </Form.Group>
-
-            <Form.Group controlId="formPassword">
-              <Form.Label className='mt-2'>Password</Form.Label>
-              <Form.Control className=' rounded-0' type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleLoginClose} className="custom-btn rounded-0">
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleLoginSubmit} className="custom-btn rounded-0">
-            Submit
-          </Button>
-          <p className='mx-auto'>Don't have an account? <a href="/register">Create one</a>.</p>
-        </Modal.Footer>
-      </Modal>
-    </>
-
   );
 };
 
-export default NavBar;
+export default NavigationBar;

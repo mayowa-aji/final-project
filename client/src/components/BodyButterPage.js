@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ProductContext } from '../contexts/productContext';
+import { ProductContext } from '../contexts/ProductContext';
 import ProductCard from './ProductCard';
 
 const BodyButterPage = () => {

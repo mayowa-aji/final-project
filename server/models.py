@@ -10,11 +10,11 @@ class Customer(db.Model):
     last_name = db.Column(db.String(255))
     email = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
-    address = db.Column(db.String(255))
-    city = db.Column(db.String(255))
-    state = db.Column(db.String(255))
-    zip_code = db.Column(db.String(255))
-    phone_number = db.Column(db.String(255))
+    address = db.Column(db.String(255), nullable=True)
+    city = db.Column(db.String(255), nullable=True)
+    state = db.Column(db.String(255), nullable=True)
+    zip_code = db.Column(db.String(255), nullable=True)
+    phone_number = db.Column(db.String(255), nullable=True)
     orders = db.relationship('Order', backref='customer')
 
     @property
