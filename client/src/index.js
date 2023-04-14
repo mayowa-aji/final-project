@@ -6,11 +6,14 @@ import './index.css';
 
 
 import App from './App';
+import { ProductProvider } from './contexts/productContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App />
+    <ProductProvider>
+      <App />
+    </ProductProvider>
   </BrowserRouter>
 );
 

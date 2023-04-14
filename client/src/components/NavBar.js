@@ -37,10 +37,10 @@ const NavBar = () => {
             HOME
           </Nav.Link>
           <NavDropdown className="px-4" title="SHOP" id="basic-nav-dropdown">
-            <NavDropdown.Item as={Link}to="/">SHOP ALL</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/">BAR SOAPS</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/">BODY OILS</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/">MEN</NavDropdown.Item>
+            <NavDropdown.Item as={Link}to="/shop-all">SHOP ALL</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/shop-soaps">BAR SOAPS</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/shop-body-oil">BODY OILS</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/shop-men">MEN</NavDropdown.Item>
           </NavDropdown>
           <Nav.Link as={Link} to="/about"  className="px-4">ABOUT</Nav.Link>
           <Nav.Link as={Link} to="/ingredients" className="px-4">
