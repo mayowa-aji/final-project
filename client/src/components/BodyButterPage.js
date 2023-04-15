@@ -8,7 +8,7 @@ const BodyButterPage = () => {
   return (
     <div>
       {products
-        .filter((product) => product.category === 'Body Oil')
+        .filter((product) => product.category === 'Body Butter')
         .map((product) => (
           <ProductCard
             key={product.id}

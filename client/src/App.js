@@ -18,6 +18,7 @@ import BodyOilsPage from './components/BodyOilsPage';
 import MensPage from './components/MensPage';
 import Login from './components/Login';
 import Register from './components/Register';
+import Search from './components/Search';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/faq" element={<Faq />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register/>} />
+        <Route path="/search" element={<Search/>} />
         <Route path="*" element={<h3>404 Page not found</h3>} />
       </Routes>
       <Login/>

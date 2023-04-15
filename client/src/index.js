@@ -10,10 +10,12 @@ import { ProductProvider } from './contexts/ProductContext';
 import { LoginProvider } from './contexts/LoginContext';
 import { RegisterProvider } from './contexts/RegisterContext';
 import { CustomerContext, CustomerProvider } from './contexts/CustomerContext';
+import { SearchProvider } from './contexts/SearchContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+  <SearchProvider>
     <LoginProvider>
       <RegisterProvider>
         <ProductProvider>
@@ -23,6 +25,7 @@ root.render(
         </ProductProvider>
       </RegisterProvider>
     </LoginProvider>
+    </SearchProvider>
   </BrowserRouter>
 );
 

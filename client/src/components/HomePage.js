@@ -4,7 +4,8 @@ import Header from './Header';
 import Marquee from './Marquee';
 import ProductList from './ProductList';
 import Press from './Press';
-import BodyButterProductList from './BodyButterProductList';
+
+
 
 
 const HomePage = () => {
@@ -12,7 +13,6 @@ const HomePage = () => {
     <div>
       <Marquee />
       <ProductList />
-      <BodyButterProductList />
       <Press />
     </div>
   );
