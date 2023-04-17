@@ -11,21 +11,21 @@ const ShopAll = () => {
       <h3
         style={{
           textAlign: 'center',
-          paddingTop: '0.5rem',
-          paddingBottom: '1.5rem',
+          paddingTop: '5rem',
+          paddingBottom: '5rem',
         }}>
         Shop our best selling soaps
       </h3>
       <div className="d-flex justify-content-center">
-        <div className="row center-mobile">
+        <div className="row center-mobile" >
           {products.map((product) => (
-            <div className="col-md-4 mb-4" key={product.id}>
+            <div style={{paddingRight:'10rem', paddingLeft:'10rem'}} className="col-md-4 mb-4" key={product.id}>
               <ProductCard product={product} />
             </div>
           ))}
         </div>
       </div>
-      <div className="text-center">
+      <div style={{paddingTop:'1rem',  paddingBottom:'3rem'}}className="text-center">
         <CustomBtn text="Shop Now" />
       </div>
     </>

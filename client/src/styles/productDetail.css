@@ -1,0 +1,16 @@
+.product-details-paragraph {
+  padding-left:5rem;
+  padding-right:5rem
+}
+
+@media (max-width: 576px) {
+  .product-details-paragraph {
+    padding-left:2rem;
+    padding-right:2rem
+  }
+
+  .product_image{
+    width: 50%;
+    height:auto;
+  }
+}

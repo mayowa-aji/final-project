@@ -5,6 +5,7 @@ import { CheckoutContext } from "../contexts/CheckoutContext";
 import { LoginContext } from "../contexts/LoginContext";
 import { CustomerContext } from "../contexts/CustomerContext";
 import CartCard from "./CartCard"
+import '../styles/productInfo.css';
 
 
 const CartModal = ({cart, setCart, addToCart}) => {
@@ -30,8 +31,8 @@ const CartModal = ({cart, setCart, addToCart}) => {
 
     return(
         <Modal  show={showCart} onHide={() => setShowCart(false)} size="lg" aria-labelledby="container-modal-title-vcenter" centered>
-            <Modal.Header>
-                <Modal.Title>Cart</Modal.Title>
+            <Modal.Header className="d-flex justify-content-center">
+                <Modal.Title>Shopping Cart</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {cartState && cartState.map(product => <CartCard id={product.product_id} product={product} />)}
