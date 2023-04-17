@@ -7,7 +7,6 @@ import { RegisterContext } from '../contexts/RegisterContext';
 import { useNavigate } from 'react-router-dom';
 import { InvalidEmailOrPassword, LoginEmpty } from './ValidationToasts';
 
-// import styles from "./LoginModal.module.css"
 
 const Login = () => {
   const { showLogin, setShowLogin } = useContext(LoginContext);
@@ -62,7 +61,7 @@ const Login = () => {
           console.log(customer);
         } else {
           setIsInvalid(true);
-          console.log('eaifjaefjiej');
+          console.log('invalid');
         }
         console.log(data);
       } catch (error) {

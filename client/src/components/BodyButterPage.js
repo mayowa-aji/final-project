@@ -6,7 +6,8 @@ const BodyButterPage = () => {
   const { products } = useContext(ProductContext);
 
   return (
-    <div>
+    <div className="d-flex justify-content-center" style={{paddingTop:'5rem', paddingBottom:'5rem'}}>
+      <div style={{paddingRight:'18rem', paddingLeft:'18rem'}}className="row center-mobile justify-content-center">
       {products
         .filter((product) => product.category === 'Body Butter')
         .map((product) => (
@@ -14,6 +15,7 @@ const BodyButterPage = () => {
           product={product}
         />
         ))}
+    </div>
     </div>
   );
 };

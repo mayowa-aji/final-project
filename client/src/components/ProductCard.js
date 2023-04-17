@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
+
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const productPage = () => {
