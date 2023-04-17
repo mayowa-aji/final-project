@@ -11,11 +11,11 @@ const MensPage = () => {
         .filter((product) => product.category === 'Men')
         .map((product) => (
           <ProductCard
-            key={product.id}
-            name={product.name}
-            imageUrl={product.image_url}
-            price={product.price}
-          />
+          product_id={product.product_id}
+          image_url={product.image_url}
+          name={product.name}
+          price={product.price}
+        />
         ))}
     </div>
   );

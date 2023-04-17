@@ -4,9 +4,14 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from werkzeug.exceptions import NotFound
 
+from flask_cors import CORS
+
 from models import db, Product, Customer, Order, OrderProduct
 
+
+
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///newsletters.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
@@ -97,7 +102,6 @@ class ProductByID(Resource):
         return response
 
 api.add_resource(ProductByID, '/products/<int:product_id>/')
-
 
 class Customers(Resource):
     def get(self):
