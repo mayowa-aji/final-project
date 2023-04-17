@@ -8,7 +8,7 @@ import CartCard from "./CartCard"
 
 
 const CartModal = ({cart, setCart, addToCart}) => {
-    const { showCart, setShowCart } = useContext(CartContext)
+    const { showCart, setShowCart, cartState } = useContext(CartContext)
     const { showCheckout, setShowCheckout } = useContext(CheckoutContext)
     const { showLogin, setShowLogin } = useContext(LoginContext)
     const { customer } = useContext(CustomerContext)
@@ -24,16 +24,9 @@ const CartModal = ({cart, setCart, addToCart}) => {
 
     }
 
-    const handleDelete = (id) => {
-        const existingItem = cart.find(item => item.product_id === id)
-        if (existingItem.quantity === 1){
-            setCart(cart.filter(item => item.product_id !== id))
-        } else {
-            setCart(cart.map(item => item.product_id === existingItem.product_id? {...existingItem, quantity: existingItem.quantity -1} : item))
-        }
-      }
+   
 
-    const totalPrice = cart.reduce((acc, curr) => {
+    const totalPrice = cartState && cartState.reduce((acc, curr) => {
         return acc + (curr.price * curr.quantity)
     }, 0)
 
@@ -43,12 +36,12 @@ const CartModal = ({cart, setCart, addToCart}) => {
                 <Modal.Title>Cart</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {cart.map(product => <CartCard id={product.product_id} product={product} onDelete={handleDelete} addToCart={addToCart}/>)}
+                {cartState && cartState.map(product => <CartCard id={product.product_id} product={product} />)}
             </Modal.Body>
             <Modal.Footer>
             <button onClick={proceedToCheckout}>Proceed to Checkout</button>
                 <button  onClick={() => setShowCart(false)}>Close</button>
-                <div>Total: ${totalPrice.toFixed(2)}</div>
+                <div>Total: ${totalPrice && totalPrice.toFixed(2)}</div>
             </Modal.Footer>
         </Modal>
     )

@@ -1,17 +1,22 @@
 
+import { useContext } from 'react';
 import { useNavigate } from "react-router-dom"
+import { CartContext } from './contexts/CartContext';
 
 const CartCard = ({ product, onDelete, id, addToCart }) => {
 
     const navigate = useNavigate();
+    const { cartState, cartDispatch } = useContext(CartContext);
 
     const handleDelete = () => {
-        console.log(id)
-        onDelete(id);
+      console.log(id);
+      // onDelete(id);
+
     }
 
     const handleAdd = () => {
-        addToCart(product)
+        // addToCart(product)
+        cartDispatch({ type: "add_to_cart", product: product})
     }
     return (
         <div>
