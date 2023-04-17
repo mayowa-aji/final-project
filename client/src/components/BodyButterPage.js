@@ -11,10 +11,7 @@ const BodyButterPage = () => {
         .filter((product) => product.category === 'Body Butter')
         .map((product) => (
           <ProductCard
-          product_id={product.product_id}
-          image_url={product.image_url}
-          name={product.name}
-          price={product.price}
+          product={product}
         />
         ))}
     </div>

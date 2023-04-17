@@ -15,10 +15,7 @@ const BodyButterProductList = () => {
       {products.map(product => (
         <div className="col-md-4 mb-4" key={product.id}>
          <ProductCard
-            product_id={product.product_id}
-            image_url={product.image_url}
-            name={product.name}
-            price={product.price}
+            product={product}
           />
         </div>
       ))}

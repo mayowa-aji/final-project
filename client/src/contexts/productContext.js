@@ -13,6 +13,7 @@ export const ProductProvider = ({ children }) => {
       .then((res) => res.json())
       .then((productList) => {
         setProducts(productList);
+        console.log(products)
       });
   }, []);
 

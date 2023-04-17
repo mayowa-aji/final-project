@@ -21,12 +21,7 @@ const ShopAll = () => {
         <div className="row center-mobile">
           {products.map((product) => (
             <div className="col-md-4 mb-4" key={product.id}>
-             <ProductCard
-            product_id={product.product_id}
-            name={product.product_name}
-            image_url={product.image_url}
-            price={product.price}
-          />
+              <ProductCard product={product} />
             </div>
           ))}
         </div>
