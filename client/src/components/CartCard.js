@@ -5,8 +5,6 @@ const CartCard = ({ product, onDelete, id, addToCart }) => {
   const { cartState, cartDispatch } = useContext(CartContext);
 
   const handleDelete = () => {
-    // console.log(id)
-    // onDelete(id);
     cartDispatch({ type: 'remove_from_cart', product: product });
   };
 

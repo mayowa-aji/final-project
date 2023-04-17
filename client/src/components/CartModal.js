@@ -24,8 +24,6 @@ const CartModal = ({cart, setCart, addToCart}) => {
 
     }
 
-   
-
     const totalPrice = cartState && cartState.reduce((acc, curr) => {
         return acc + (curr.price * curr.quantity)
     }, 0)

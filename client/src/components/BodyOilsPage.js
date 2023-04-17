@@ -4,7 +4,6 @@ import ProductCard from './ProductCard';
 
 const BodyOilsPage = () => {
   const { products } = useContext(ProductContext);
-
   return (
     <div>
       {products

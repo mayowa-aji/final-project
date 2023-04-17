@@ -3,7 +3,6 @@ import '../styles/gallery.css';
 
 const Gallery = ({ images }) => {
 
-
   return (
     <div className="gallery">
       {images.map((image, index, link) => (

@@ -1,7 +1,6 @@
 import { ProductContext } from '../contexts/ProductContext';
 import ProductCard from './ProductCard';
 import CustomBtn from './CustomBtn';
-
 import React, { useContext } from 'react';
 
 const ShopAll = () => {

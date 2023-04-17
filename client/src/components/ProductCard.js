@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-// import { OrderContext } from "../contexts/OrderContext";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();

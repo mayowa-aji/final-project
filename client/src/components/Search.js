@@ -9,15 +9,13 @@ const Search = () => {
   const { setSearchField, searchField, searchResults, setSearchResults } = useContext(SearchContext);
 
   const { products, setProducts} = useContext(ProductContext)
-  // const [searchQuery, setSearchQuery] = useState('');
-  // const [searchResults, setSearchResults] = useState([]);;
 
   useEffect(() => {
     setSearchField('');
     setSearchResults([])
   }, []);
+
   useEffect(() => {
-    // setSearchResults(products);
   }, [searchField]);
 
   const handleSearch = (e) => {
@@ -27,11 +25,6 @@ const Search = () => {
         product.product_name.toLowerCase().includes(searchField.toLowerCase())
       )
     );
-    // setSearchField(searchQuery).then((results) => {
-    //   setSearchResults(results);
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
   }
 
 return (
@@ -56,7 +49,5 @@ return (
   </div>
 );
 }
-
-
 export default Search;
 

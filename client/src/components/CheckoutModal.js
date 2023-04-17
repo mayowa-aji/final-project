@@ -15,16 +15,6 @@ const CheckoutModal = () => {
         setShowCart(true)
     }
 
-    // const handleDelete = (id) => {
-    //   const existingItem = cart.find(item => item.product_id === id)
-    //   if (existingItem.quantity === 1){
-    //       setCart(cart.filter(item => item.product_id !== id))
-    //   } else {
-    //       setCart(cart.map(item => item.product_id === existingItem.product_id? {...existingItem, quantity: existingItem.quantity -1} : item))
-    //   }
-    // }
-
-
     return(
         <Modal show={showCheckout} onHide={() => setShowCheckout(false)} size="lg" aria-labelledby="container-modal-title-vcenter" centered>
             <Modal.Header>

@@ -4,7 +4,6 @@ import ProductCard from './ProductCard';
 
 const MensPage = () => {
   const { products } = useContext(ProductContext);
-
   return (
     <div>
       {products

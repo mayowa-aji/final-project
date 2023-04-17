@@ -26,23 +26,6 @@ import { CartContext } from './contexts/CartContext';
 
 const App = () => {
   const { showCart, setShowCart, cartState, cartDispatch } = useContext(CartContext);
-  // function addToCart(product) {
-  //   const existingItem = cartState.find((item) => item.product_id === product.product_id)
-  //   console.log(cartState);
-  //     if (existingItem) {
-  //       setCart(
-  //         cart.map((item) =>
-  //           item.product_id === existingItem.product_id
-  //             ? { ...existingItem, quantity: existingItem.quantity + 1 }
-  //             : item
-  //         )
-  //       );
-  //     } else {
-  //       setCart([...cart, { ...product, quantity: 1 }]);
-  //     }
-  //     setShowCart(true)
-  //   }
-
   return (
     <>
       <Header />

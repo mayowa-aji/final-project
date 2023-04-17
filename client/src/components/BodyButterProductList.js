@@ -24,8 +24,6 @@ const BodyButterProductList = () => {
     <div className="text-center">
         <CustomBtn text="Shop Now" />
     </div>
-
-
     </>
   );
 };

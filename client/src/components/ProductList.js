@@ -26,21 +26,6 @@ const ProductList = () => {
         }}>
         Shop our best selling soaps
       </h3>
-      {/* <div className="d-flex justify-content-center">
-      <div className="row center-mobile">
-      {products
-        .filter((product) => product.category === 'Soap').slice(0, 3)
-        .map((product) => (
-        <div className="col-md-4 mb-4" key={product.id}>
-          <ProductCard
-            imageUrl={product.image_url}
-            name={product.name}
-            price={product.price}
-          />
-        </div>
-      ))}
-      </div>
-    </div> */}
       <div className="text-center">
         <Link to="/shop-soaps">
           <CustomBtn text="Shop Soaps" />
