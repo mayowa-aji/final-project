@@ -4,6 +4,7 @@ import { RegisterContext } from '../contexts/RegisterContext';
 import { LoginContext } from '../contexts/LoginContext';
 
 import { FieldEmpty, PasswordsDontMatch } from './ValidationToasts';
+import '../styles/registration.css'
 
 const RegisterModal = () => {
   const { showRegister, setShowRegister } = useContext(RegisterContext);
@@ -80,8 +81,8 @@ const RegisterModal = () => {
       size="lg"
       aria-labelledby="container-modal-title-vcenter"
       centered>
-      <Modal.Header></Modal.Header>
-      <Modal.Body>
+      <Modal.Header className='modal_body'></Modal.Header>
+      <Modal.Body className='modal_body'>
         {/** If passwords dont match and all the fields are filled */}
         {!isMatching && !areFieldsEmpty ? <PasswordsDontMatch /> : null}
         {/** If there are empty fields */}
@@ -117,14 +118,14 @@ const RegisterModal = () => {
           type="text"
           placeholder="Last Name"
         />
-        <button onClick={submitRegistrationData}>Register</button>
+        <button className='modal_button' onClick={submitRegistrationData}>Register</button>
         <a onClick={switchToLogin}>
           Already have an account?{' '}
           <b style={{ color: '#007bff' }}>Login here.</b>
         </a>
       </Modal.Body>
       <Modal.Footer>
-        <button onClick={() => setShowRegister(false)}>Close</button>
+        <button className='modal_button' onClick={() => setShowRegister(false)}>Close</button>
       </Modal.Footer>
     </Modal>
   );

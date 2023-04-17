@@ -5,6 +5,7 @@ import { CustomerContext } from '../contexts/CustomerContext';
 import { LoginContext } from '../contexts/LoginContext';
 import { RegisterContext } from '../contexts/RegisterContext';
 import { useNavigate } from 'react-router-dom';
+import { InvalidEmailOrPassword, LoginEmpty } from './ValidationToasts';
 
 // import styles from "./LoginModal.module.css"
 
@@ -18,6 +19,8 @@ const Login = () => {
   const [isLoginEmpty, setIsLoginEmpty] = useState(false); // Should be false at beginning
   const [isInvalid, setIsInvalid] = useState(false);
   const navigate = useNavigate();
+
+
 
   const switchToRegister = () => {
     setShowLogin(false);
@@ -86,10 +89,8 @@ const Login = () => {
       <Modal.Title>Login</Modal.Title>
       <Modal.Body>
         <h2>Login to Account</h2>
-        {isLoginEmpty ? <p>Please enter your email and password.</p> : null}
-        {isInvalid && !isLoginEmpty ? (
-          <p>Invalid email or password. Please try again.</p>
-        ) : null}
+        {isLoginEmpty ?  <LoginEmpty /> : null}
+        {isInvalid && !isLoginEmpty? <InvalidEmailOrPassword /> : null}
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label className="mt-1">Email Address</Form.Label>
