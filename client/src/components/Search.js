@@ -13,11 +13,20 @@ const Search = () => {
   // const [searchResults, setSearchResults] = useState([]);;
 
   useEffect(() => {
-    setSearchResults(products.filter(product => product.product_name.toLowerCase().includes(searchField.toLowerCase())))
-  },[searchField])
+    setSearchField('');
+    setSearchResults([])
+  }, []);
+  useEffect(() => {
+    // setSearchResults(products);
+  }, [searchField]);
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setSearchResults(
+      products.filter((product) =>
+        product.product_name.toLowerCase().includes(searchField.toLowerCase())
+      )
+    );
     // setSearchField(searchQuery).then((results) => {
     //   setSearchResults(results);
     // }).catch((error) => {
@@ -28,11 +37,21 @@ const Search = () => {
 return (
   <div>
     <Form inline onSubmit={handleSearch}>
-      <FormControl type="text" value={searchField} onChange={(e) => setSearchField(e.target.value)} placeholder="Search" className="mr-sm-2" />
-      {/* <Button variant="outline-success" type="submit">Search</Button> */}
+      <FormControl
+        type="text"
+        value={searchField}
+        onChange={(e) => setSearchField(e.target.value)}
+        placeholder="Search"
+        className="mr-sm-2"
+      />
+      <Button variant="outline-success" type="submit">
+        Search
+      </Button>
     </Form>
     <div>
-      {searchResults.map((product) => <ProductCard product={product} /> )}
+      {searchResults && searchResults.map((product) => (
+        <ProductCard product={product} />
+      ))}
     </div>
   </div>
 );
