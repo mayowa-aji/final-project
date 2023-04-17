@@ -38,8 +38,10 @@ const CartModal = ({cart, setCart, addToCart}) => {
                 {cartState && cartState.map(product => <CartCard id={product.product_id} product={product} />)}
             </Modal.Body>
             <Modal.Footer>
-            <button onClick={proceedToCheckout}>Proceed to Checkout</button>
-                <button  onClick={() => setShowCart(false)}>Close</button>
+
+            <button className='btn-primary-outline px-3'  onClick={proceedToCheckout}>Proceed to Checkout</button>
+            <div style={{ width: '1em' }}></div>
+                <button className='btn-primary-outline px-3' onClick={() => setShowCart(false)}>Close</button>
                 <div>Total: ${totalPrice && totalPrice.toFixed(2)}</div>
             </Modal.Footer>
         </Modal>
