@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,8 +20,29 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Search from './components/Search';
 import ProductDetail from './components/ProductDetail';
+import CartModal from './components/CartModal';
+import CheckoutModal from './components/CheckoutModal';
+import { CartContext } from './contexts/CartContext';
 
 const App = () => {
+  const [cart, setCart] = useState([])
+  const { showCart, setShowCart } = useContext(CartContext)
+  function addToCart(product) {
+    const existingItem = cart.find((item) => item.product_id === product.product_id)
+      if (existingItem) {
+        setCart(
+          cart.map((item) =>
+            item.product_id === existingItem.product_id
+              ? { ...existingItem, quantity: existingItem.quantity + 1 }
+              : item
+          )
+        );
+      } else {
+        setCart([...cart, { ...product, quantity: 1 }]);
+      }
+      setShowCart(true)
+    }
+
   return (
     <>
       <Header />
@@ -30,7 +51,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/shop" element={<ShopAll />} />
-        <Route path="/shop/:product_id" element={<ProductDetail />} />
+        <Route path="/shop/:product_id" element={<ProductDetail  setCart={setCart} addToCart={addToCart}/>}/>
 
         <Route path="/shop-soaps" element={<SoapViewer />} />
         <Route path="/shop-body-butter" element={<BodyButterPage />} />
@@ -45,6 +66,8 @@ const App = () => {
       </Routes>
       <Login/>
       <Register/>
+      <CartModal cart={cart} setCart={setCart} addToCart={addToCart}/>
+      <CheckoutModal />
       <Footer />
     </>
   );

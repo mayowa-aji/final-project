@@ -13,7 +13,7 @@ const ProductPage = ({ cart, setCart, addToCart }) => {
     },[])
     return(
         <div>
-            <ProductInfo product={product}/>
+            <ProductInfo product={product} cart={cart} setCart={setCart} addToCart={addToCart}/>
             <p>{product.description}</p>
         </div>
     )

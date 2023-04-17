@@ -1,5 +1,3 @@
-
-
 const ProductInfo = ({ product, setCart, cart, addToCart }) => {
     function handleAdd(){
         addToCart(product)
@@ -11,8 +9,8 @@ const ProductInfo = ({ product, setCart, cart, addToCart }) => {
             <div>
                 <h3>{product.product_name}</h3>
                 <h3>${product.price}</h3>
-                <button onClick={handleAdd}>ADD TO CART</button>
-                <button>SHARE BUTTON</button>
+                <button onClick={handleAdd}>ADD TO BASKET</button>
+
             </div>
         </div>
     )
