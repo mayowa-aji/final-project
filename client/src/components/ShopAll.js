@@ -7,7 +7,6 @@ import React, { useContext } from 'react';
 const ShopAll = () => {
   const { products, setProducts } = useContext(ProductContext);
 
-  console.log(products);
   return (
     <>
       <h3
@@ -22,11 +21,12 @@ const ShopAll = () => {
         <div className="row center-mobile">
           {products.map((product) => (
             <div className="col-md-4 mb-4" key={product.id}>
-              <ProductCard
-                imageUrl={product.image_url}
-                name={product.product_name}
-                price={product.price}
-              />
+             <ProductCard
+            product_id={product.product_id}
+            name={product.product_name}
+            image_url={product.image_url}
+            price={product.price}
+          />
             </div>
           ))}
         </div>

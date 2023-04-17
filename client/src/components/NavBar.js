@@ -33,7 +33,7 @@ const NavigationBar = () => {
             Home
           </Nav.Link>
           <NavDropdown title="Shop" id="basic-nav-dropdown">
-            <NavDropdown.Item onClick={() => navigate('/shop-all')}>
+            <NavDropdown.Item onClick={() => navigate('/shop')}>
               Shop All
             </NavDropdown.Item>
             <NavDropdown.Item onClick={() => navigate('/shop-soaps')}>

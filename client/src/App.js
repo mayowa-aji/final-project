@@ -19,6 +19,7 @@ import MensPage from './components/MensPage';
 import Login from './components/Login';
 import Register from './components/Register';
 import Search from './components/Search';
+import ProductDetail from './components/ProductDetail';
 
 const App = () => {
   return (
@@ -28,7 +29,9 @@ const App = () => {
         <Route exact path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/ingredients" element={<Ingredients />} />
-        <Route path="/shop-all" element={<ShopAll />} />
+        <Route path="/shop" element={<ShopAll />} />
+        <Route path="/shop/:product_id" element={<ProductDetail />} />
+
         <Route path="/shop-soaps" element={<SoapViewer />} />
         <Route path="/shop-body-butter" element={<BodyButterPage />} />
         <Route path="/shop-body-oil" element={<BodyOilsPage />} />
