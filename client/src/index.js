@@ -9,10 +9,14 @@ import App from './App';
 import { ProductProvider } from './contexts/ProductContext';
 import { LoginProvider } from './contexts/LoginContext';
 import { RegisterProvider } from './contexts/RegisterContext';
-import {  CustomerProvider } from './contexts/CustomerContext';
+import { CustomerProvider } from './contexts/CustomerContext';
 import { SearchProvider } from './contexts/SearchContext';
 import { CartProvider } from './contexts/CartContext';
 import { CheckoutProvider} from './contexts/CheckoutContext';
+import { CancelConfirmProvider } from './contexts/CancelConfirmContext';
+import { CancelProvider } from './contexts/CancelContext';
+import { OrderProvider } from './contexts/OrderContext';
+import { ViewProvider } from './contexts/ViewContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,14 +28,22 @@ root.render(
           <CustomerProvider>
           <CartProvider>
           <CheckoutProvider>
-            <App />
-            </CheckoutProvider>
-            </CartProvider>
-          </CustomerProvider>
-        </ProductProvider>
-      </RegisterProvider>
-    </LoginProvider>
-    </SearchProvider>
-  </BrowserRouter>
-);
+            <CancelConfirmProvider>
+              <CancelProvider>
+                <OrderProvider>
+                  <ViewProvider>
+                  <App />
+                  </ViewProvider>
+                  </OrderProvider>
+                </CancelProvider>
+                </CancelConfirmProvider>
+                </CheckoutProvider>
+                </CartProvider>
+              </CustomerProvider>
+            </ProductProvider>
+          </RegisterProvider>
+        </LoginProvider>
+        </SearchProvider>
+      </BrowserRouter>
+    );
 

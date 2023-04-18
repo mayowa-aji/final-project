@@ -191,6 +191,8 @@ class Orders(Resource):
     def get(self):
         order_list = [order.to_dict() for order in Customer.query.all()]
 
+        print(order_list)
+
         response = make_response(
             order_list,
             200

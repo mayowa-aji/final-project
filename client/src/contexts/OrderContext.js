@@ -1,16 +1,29 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from 'react';
 
 export const OrderContext = createContext({
-    showOrder: null,
-    setShowOrder: () => {}
-})
+  showOrder: null,
+  setShowOrder: () => {},
+  orders: [],
+  setOrders: () => {},
+});
 
 export const OrderProvider = (props) => {
-    const [showOrder, setShowOrder] = useState(false)
+  const [showOrder, setShowOrder] = useState(false);
+  const [orders, setOrders] = useState([]);
 
-    return(
-        <OrderContext.Provider value={{ showOrder, setShowOrder }}>
-            {props.children}
-        </OrderContext.Provider>
-    )
-}
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const resp = await fetch('/orders');
+      const orderList = await resp.json();
+      setOrders(orderList);
+    };
+    fetchOrders();
+  }, []);
+
+  return (
+    <OrderContext.Provider
+      value={{ showOrder, setShowOrder, orders, setOrders }}>
+      {props.children}
+    </OrderContext.Provider>
+  );
+};

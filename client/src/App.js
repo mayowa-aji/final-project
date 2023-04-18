@@ -23,6 +23,7 @@ import ProductDetail from './components/ProductDetail';
 import CartModal from './components/CartModal';
 import CheckoutModal from './components/CheckoutModal';
 import { CartContext } from './contexts/CartContext';
+import OrderPage from './components/OrderPage';
 
 const App = () => {
   const { showCart, setShowCart, cartState, cartDispatch } = useContext(CartContext);
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/shop-body-oil" element={<BodyOilsPage />} />
         <Route path="/shop-men" element={<MensPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/orders" element={<OrderPage />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register/>} />
