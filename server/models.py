@@ -16,6 +16,9 @@ class Customer(db.Model):
     zip_code = db.Column(db.String(255), nullable=True)
     phone_number = db.Column(db.String(255), nullable=True)
     orders = db.relationship('Order', backref='customer')
+    carts = db.relationship('Cart', backref='customer')
+
+
 
     @property
     def password(self):
@@ -39,7 +42,9 @@ class Customer(db.Model):
             'state': self.state,
             'zip_code': self.zip_code,
             'phone_number': self.phone_number,
-            'orders': [order.to_dict() for order in self.orders]
+            'orders': [order.to_dict() for order in self.orders],
+            'carts': [cart.to_dict() for cart in self.orders],
+
         }
 
 
@@ -154,6 +159,26 @@ class OrderProduct(db.Model):
             'unit_price': self.unit_price,
             'product': product.to_dict_summary()
         }
+
+
+class Cart(db.Model):
+    __tablename__ = 'cart'
+    cart_id = db.Column(db.Integer, primary_key=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('products.product_id'))
+    quantity = db.Column(db.Integer)
+    unit_price = db.Column(db.Float)
+
+    def to_dict(self):
+        product = Product.query.filter(Product.product_id == self.product_id).first()
+        return {
+            "cart_id": self.cart_id,
+            'product': self.product.to_dict_summary(),
+            'quantity': self.quantity,
+            'unit_price': self.unit_price,
+        }
+
+
 
 
 
