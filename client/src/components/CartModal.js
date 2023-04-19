@@ -14,7 +14,7 @@ const CartModal = ({ cart, setCart, addToCart }) => {
   const { showLogin, setShowLogin } = useContext(LoginContext);
   const { customer } = useContext(CustomerContext);
   const [total, setTotal] = useState(0);
-  console.log(cartState,"ejfgeoajfgioeajfgoeajfaeo")
+
   useEffect(() => {
     fetchCart(customer && customer.customer_id);
     console.log(cartState)
@@ -34,7 +34,7 @@ const CartModal = ({ cart, setCart, addToCart }) => {
     setTotal(
       cartState &&
         cartState.reduce((acc, curr) => {
-          return acc + curr.price * curr.quantity;
+          return acc + curr.unit_price * curr.quantity;
         }, 0)
     );
   }, [cartState]);
@@ -47,7 +47,7 @@ const CartModal = ({ cart, setCart, addToCart }) => {
       aria-labelledby="container-modal-title-vcenter"
       centered>
       <Modal.Header className="d-flex justify-content-center">
-        <Modal.Title>Shopping Cart</Modal.Title>
+        <Modal.Title>Your Shopping Cart</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {cartState ?

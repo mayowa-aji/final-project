@@ -32,13 +32,13 @@ const CartCard = ({ product, onDelete, id, addToCart }) => {
     <Card style={{  border: 'none' }}>
     <div className="row no-gutters">
       <div className="col-md-4">
-        <Card.Img src={product.image_url} alt={product.product_name} />
+        <Card.Img src={product.product.image_url} alt={product.product_name} />
       </div>
       <div className="col-md-8">
         <Card.Body>
-          <Card.Title>{product.product_name}</Card.Title>
+          <Card.Title>{product.product.product_name}</Card.Title>
           <Card.Text>
-            Price: ${product.price}<br />
+            Price: ${product.product.unit_price}<br />
             Quantity: {product.quantity}
           </Card.Text>
           <div className="d-flex ">
