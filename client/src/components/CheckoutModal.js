@@ -23,11 +23,11 @@ const CheckoutModal = () => {
                 <button  className='btn-primary-outline px-3'  onClick={backToCart}>Back to Cart</button>
             </Modal.Header>
             <Modal.Body>
-            {cartState && cartState.map(product => <CartCard id={product.product_id} product={product}  />)}            </Modal.Body>
+            {cartState && cartState.map(product => <CartCard id={product.product_id} product={product}  />)}</Modal.Body>
             <Modal.Footer>
                 <button className='btn-primary-outline px-3' >Purchase</button>
                 <button  className='btn-primary-outline px-3'  onClick={() => setShowCheckout(false)}>Close</button>
-            </Modal.Footer>
+                </Modal.Footer>
         </Modal>
     )
 }

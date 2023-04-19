@@ -8,11 +8,12 @@ const CartCard = ({ product, onDelete, id, addToCart }) => {
   const { cartState, cartDispatch } = useContext(CartContext);
 
   const handleDelete = () => {
-    cartDispatch({ type: 'remove_from_cart', product: product });
+    console.log(product, "FROM HANDLE DELETE!!!!!!!!!")
+    cartDispatch({ type: 'remove_from_cart', product });
   };
 
   const handleAdd = () => {
-    cartDispatch({ type: 'add_to_cart', product: product });
+    cartDispatch({ type: 'add_to_cart', product });
   };
   return (
     <Card style={{  border: 'none' }}>

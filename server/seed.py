@@ -25,7 +25,7 @@ if __name__ == '__main__':
             product = Product(
                 product_name=fake.word(),
                 category=fake.word(),
-                price=fake.pydecimal(left_digits=2, right_digits=2, positive=True),
+                unit_price=fake.pydecimal(left_digits=2, right_digits=2, positive=True),
                 description=fake.sentence(),
                 image_url=fake.image_url(),
                 directions=fake.sentence()

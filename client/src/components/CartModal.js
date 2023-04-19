@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { Modal } from "react-bootstrap"
 import { CheckoutContext } from "../contexts/CheckoutContext";
@@ -9,11 +9,17 @@ import '../styles/productInfo.css';
 
 
 const CartModal = ({cart, setCart, addToCart}) => {
-    const { showCart, setShowCart, cartState } = useContext(CartContext)
+    const { showCart, setShowCart, cartState, fetchCart } = useContext(CartContext)
     const { showCheckout, setShowCheckout } = useContext(CheckoutContext)
     const { showLogin, setShowLogin } = useContext(LoginContext)
     const { customer } = useContext(CustomerContext)
 
+
+
+    useEffect(() => {
+        fetchCart(customer && customer.customer_id)
+        console.log(cartState, "CARTSTATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    },[customer])
     const proceedToCheckout = () => {
         if(customer){
             setShowCart(false)
@@ -26,10 +32,11 @@ const CartModal = ({cart, setCart, addToCart}) => {
     }
 
     const totalPrice = cartState && cartState.reduce((acc, curr) => {
-        return acc + (curr.price * curr.quantity)
+        return acc + (curr.unit_price * curr.quantity)
     }, 0)
 
     return(
+
         <Modal  show={showCart} onHide={() => setShowCart(false)} size="lg" aria-labelledby="container-modal-title-vcenter" centered>
             <Modal.Header className="d-flex justify-content-center">
                 <Modal.Title>Shopping Cart</Modal.Title>

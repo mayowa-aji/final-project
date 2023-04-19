@@ -43,7 +43,7 @@ class Customer(db.Model):
             'zip_code': self.zip_code,
             'phone_number': self.phone_number,
             'orders': [order.to_dict() for order in self.orders],
-            'carts': [cart.to_dict() for cart in self.orders],
+            'carts': [cart.to_dict() for cart in self.carts],
 
         }
 
@@ -54,7 +54,7 @@ class Product(db.Model):
     product_name = db.Column(db.String(255))
     category = db.Column(db.String(255))
     description = db.Column(db.Text)
-    price = db.Column(db.Float)
+    unit_price = db.Column(db.Float)
     directions = db.Column(db.Text)
     image_url = db.Column(db.String(255))
     ingredients = db.relationship("ProductIngredient", backref="product")
@@ -67,7 +67,7 @@ class Product(db.Model):
           'product_name': self.product_name,
           # 'brand': self.brand,
           'category': self.category,
-          'price': self.price,
+          'unit_price': self.unit_price,
           'description': self.description,
           'image_url': self.image_url,
           "ingredients": [ingredient.to_dict() for ingredient in self.ingredients],
@@ -81,7 +81,7 @@ class Product(db.Model):
           'product_name': self.product_name,
           # 'brand': self.brand,
           'category': self.category,
-          'price': self.price,
+          'unit_price': self.unit_price,
           'description': self.description,
           'image_url': self.image_url,
           "ingredients": [ingredient.to_dict() for ingredient in self.ingredients],
@@ -173,7 +173,7 @@ class Cart(db.Model):
         product = Product.query.filter(Product.product_id == self.product_id).first()
         return {
             "cart_id": self.cart_id,
-            'product': self.product.to_dict_summary(),
+            'product': product.to_dict_summary(),
             'quantity': self.quantity,
             'unit_price': self.unit_price,
         }
