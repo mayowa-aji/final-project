@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,9 +24,18 @@ import CartModal from './components/CartModal';
 import CheckoutModal from './components/CheckoutModal';
 import { CartContext } from './contexts/CartContext';
 import OrderPage from './components/OrderPage';
+import { CustomerContext } from './contexts/CustomerContext';
 
 const App = () => {
-  const { showCart, setShowCart, cartState, cartDispatch } = useContext(CartContext);
+  const { showCart, setShowCart, cartState, cartDispatch ,fetchCart } = useContext(CartContext);
+
+  const { customer } = useContext(CustomerContext);
+
+  useEffect(() => {
+  
+    fetchCart(customer && customer.customer_id)
+    console.log(customer)
+  },[customer])
   return (
     <>
       <Header />

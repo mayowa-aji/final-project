@@ -3,16 +3,31 @@ const cartReducer = (state,action) => {
   switch(action.type) {
     case "add_to_cart":
       console.log(state,action)
-      existingItem = state.find((item) => item.product_id === action.product.product_id)
-      console.log(existingItem);
+      existingItem = state.find((item) => {
+        console.log(item);
+        if (item.product_id === action.product_id) {
+          return item;
+        }
+      });
+      console.log(existingItem, 'existingitem');
       if (existingItem) {
-        return state.map((item) =>
-          item.product_id === existingItem.product_id
-            ? { ...existingItem, quantity: existingItem.quantity + 1 }
-            : item
+        return state.map(
+          (item) => {
+            if (item.product_id === action.product_id) {
+              console.log(item, 'mappeditem');
+              item.quantity += 1;
+              return item;
+            } else {
+              return item;
+            }
+          }
+          // item.product_id === existingItem.product.product_id
+          //   ? { ...existingItem, quantity: existingItem.quantity + 1 }
+          //   : item
         );
       } else {
-        // return [...state, { ...action.product, quantity: 1 }];
+        // return [...state, { ...action.product, quantity: 1 }]
+        console.log([...state, action.product], 'addedarray');
         return [...state, action.product];
       }
     case "remove_from_cart":

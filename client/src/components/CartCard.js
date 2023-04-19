@@ -3,17 +3,30 @@ import { CartContext } from '../contexts/CartContext';
 
 import { Card, Button } from 'react-bootstrap';
 import '../styles/productInfo.css';
+import { CustomerContext } from '../contexts/CustomerContext';
 
 const CartCard = ({ product, onDelete, id, addToCart }) => {
-  const { cartState, cartDispatch } = useContext(CartContext);
+  const { deleteCart, patchCart, addCart, fetchCart} = useContext(CartContext);
+
+  const { customer} = useContext(CustomerContext)
 
   const handleDelete = () => {
     console.log(product, "FROM HANDLE DELETE!!!!!!!!!")
-    cartDispatch({ type: 'remove_from_cart', product });
+    if(product.quantity === 1) {
+      deleteCart(product,product.product.product_id, customer.customer_id)
+    } else {
+      product.quantity -=1
+      patchCart(product,product.product.product_id,customer.customer_id)
+    }
+    // cartDispatch({ type: 'remove_from_cart', product });
+    fetchCart(customer.customer_id)
   };
 
-  const handleAdd = () => {
-    cartDispatch({ type: 'add_to_cart', product });
+  const handleAdd = () =>
+  {
+    addCart(product, customer.customer_id)
+    fetchCart(customer.customer_id)
+    // cartDispatch({ type: 'add_to_cart', product });
   };
   return (
     <Card style={{  border: 'none' }}>

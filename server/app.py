@@ -367,19 +367,19 @@ class CartbyCustomerID(Resource):
        customer = customer.to_dict()
 
        customer_cart = customer["carts"]
-       print(customer_cart)
+    #    print(customer_cart)
 
        return make_response(customer_cart, 200)
 
     def post(self,customer_id):
 
         product_json = request.get_json()
-        print(product_json)
+        # print(product_json)
         # customer_id = request_json['customer_id']
         customer = Customer.query.get(customer_id)
         # if not customer:
         #   abort(404, 'The customer you were trying to update was not found')
-        product_id = product_json['product_id']
+        product_id = product_json["product"]['product_id']
         # product_in_cart = Cart.query.filter(Cart.product_id == product_id and Cart.customer_id == customer_id).first()
         customer_cart = customer.carts
         filtered_cart = [cart_item for cart_item in customer_cart if cart_item.product_id == product_id]
@@ -387,7 +387,10 @@ class CartbyCustomerID(Resource):
            filtered_cart[0].quantity += 1
            db.session.add(filtered_cart[0])
            db.session.commit()
-           return make_response({'message':"added to cart."},200)
+           customer = customer.to_dict()
+
+           customer_cart = customer["carts"]
+           return make_response(jsonify(customer_cart),200)
         elif not filtered_cart:
             new_cart = Cart(
             customer_id=customer_id,
@@ -399,7 +402,10 @@ class CartbyCustomerID(Resource):
             customer.carts.append(new_cart)
             db.session.add(new_cart)
             db.session.commit()
-            return make_response({'message':"added to cart (new)."},200)
+            customer = customer.to_dict()
+
+            customer_cart = customer["carts"]
+            return make_response(jsonify(customer_cart),200)
         else:
             return make_response({"error":"failure to add to cart"}, 404)
 
@@ -417,9 +423,15 @@ class CartByCustomerIdAndByProductId(Resource):
             cart_item_to_update.quantity = new_quantity
             db.session.add(cart_item_to_update)
             db.session.commit()
-            return make_response({'message':"modified cart."},200)
+            customer = customer.to_dict()
+
+            customer_cart = customer["carts"]
+            return make_response(jsonify(customer_cart),200)
         except IndexError:
-           return make_response("failure to modify cart",404)
+           customer = customer.to_dict()
+
+           customer_cart = customer["carts"]
+           return make_response(jsonify(customer_cart),404)
     def delete(self,customer_id,product_id):
        try:
           customer = Customer.query.get(customer_id)
@@ -427,7 +439,11 @@ class CartByCustomerIdAndByProductId(Resource):
           cart_item_to_delete = [cart_item for cart_item in customer_cart if cart_item.product_id == product_id][0]
           db.session.delete(cart_item_to_delete)
           db.session.commit()
-          return make_response({'message':" cart item deleted"},200)
+
+          customer = customer.to_dict()
+
+          customer_cart = customer["carts"]
+          return make_response(jsonify(customer_cart),200)
        except:
           return make_response({"error":"failure to delete item"},404)
 

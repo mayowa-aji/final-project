@@ -8,14 +8,16 @@ import '../styles/productInfo.css';
 import { CustomerContext } from '../contexts/CustomerContext';
 
 const ProductInfo = ({ product }) => {
-  const { cartState, cartDispatch, setShowCart, addCart } =
+  const { cartState, cartDispatch, setShowCart, addCart, fetchCart } =
     useContext(CartContext);
 
   const { customer } = useContext(CustomerContext);
   function handleAdd() {
     console.log(product, 'frpm productinfo');
-    cartDispatch({ type: 'add_to_cart', product });
+    // cartDispatch({ type: 'add_to_cart', product });
     addCart(product, customer.customer_id);
+    fetchCart(customer.customer_id);
+
     setShowCart(true);
   }
 

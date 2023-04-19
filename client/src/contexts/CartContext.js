@@ -18,13 +18,13 @@ export const CartContext = createContext({
 
 export const CartProvider = (props) => {
     const [showCart, setShowCart] = useState(false);
-  const [cartState, cartDispatch] = useReducer(cartReducer, []);
+    const [cartState, setCartState] = useState([])
 
   const fetchCart = async (customer_id) => {
     const resp = await fetch(`/customer/${customer_id}/cart`);
     const cartData = await resp.json();
     console.log(cartData, "CARTCONTEXRTEGFAFE")
-    cartDispatch({type: "set_cart", newCart: cartData})
+    setCartState(cartData)
   };
 
   const addCart = async (product, customer_id) => {
@@ -33,8 +33,8 @@ export const CartProvider = (props) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(product),
     })
-    .then(resp => resp.json())
-    .then(data => console.log(data))
+    const cartData = await resp.json()
+    setCartState(cartData)
   };
 
   const patchCart = async (product, product_id, customer_id) => {
@@ -43,15 +43,19 @@ export const CartProvider = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(product),
     });
-    console.log(resp.json());
+    const cartData = await resp.json()
+    console.log(cartData);
+    setCartState(cartData)
   }
 
-  const deleteCart = async (product, product_id, customer_id) => {
+  const deleteCart = async (product_id, customer_id) => {
     const resp = await fetch(`/customer/${customer_id}/cart/${product_id}`,{
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'},
     })
-    console.log(resp.json());
+    const cartData = await resp.json()
+    setCartState(cartData)
+
   }
 
     return (
@@ -60,7 +64,7 @@ export const CartProvider = (props) => {
         showCart,
         setShowCart,
         cartState,
-        cartDispatch,
+        setCartState,
         fetchCart,
         addCart,
         patchCart,
