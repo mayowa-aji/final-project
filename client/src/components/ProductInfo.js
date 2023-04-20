@@ -33,7 +33,7 @@ const ProductInfo = ({ product }) => {
         </Col>
         <Col md={8} className="py-5">
           <h3>{product.product_name}</h3>
-          <p>${product.price}</p>
+          <p>${product.unit_price}</p>
           <Button className="btn-primary-outline" onClick={handleAdd}>
             ADD TO CART
           </Button>
