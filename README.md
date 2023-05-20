@@ -1,1 +1,1 @@
-# final-project
+FLO + THEO e-Commerce Page
