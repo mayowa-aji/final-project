@@ -1,5 +1,5 @@
 from app import app, db
-from models import Product, Customer, Order, OrderProduct, Ingredient, ProductIngredient
+from models import Product, Customer, Order, OrderProduct, Ingredient, ProductIngredient, Cart
 
 from faker import Faker
 import random
@@ -15,6 +15,7 @@ if __name__ == '__main__':
         OrderProduct.query.delete()
         Ingredient.query.delete()
         ProductIngredient.query.delete()
+        Cart.query.delete()
 
         db.session.commit()
 
@@ -24,7 +25,7 @@ if __name__ == '__main__':
             product = Product(
                 product_name=fake.word(),
                 category=fake.word(),
-                price=fake.pydecimal(left_digits=2, right_digits=2, positive=True),
+                unit_price=fake.pydecimal(left_digits=2, right_digits=2, positive=True),
                 description=fake.sentence(),
                 image_url=fake.image_url(),
                 directions=fake.sentence()
@@ -101,4 +102,16 @@ if __name__ == '__main__':
             )
             order_items.append(order_item)
         db.session.add_all(order_items)
+        db.session.commit()
+
+        cart_items = []
+        for i in range(20):
+            cart_item = Cart(
+                customer_id=fake.random_int(min=1, max=10),
+                product_id=fake.random_int(min=1, max=10),
+                quantity=fake.random_int(min=1, max=5),
+                unit_price=fake.pydecimal(left_digits=2, right_digits=2, positive=True)
+            )
+            cart_items.append(cart_item)
+        db.session.add_all(cart_items)
         db.session.commit()

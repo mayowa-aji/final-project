@@ -1,7 +1,7 @@
 
 .custom-button {
-  background-color: white;
-  border: 2px solid black;
+  background-color: #ffffff !important;
+  border: 2px solid #000000 !important;
   border-radius: 0;
   color: black;
   padding: 10px 20px;
@@ -9,6 +9,7 @@
 }
 
 .custom-button:hover {
-  background-color: black;
-  color: white;
+  background-color: #000000 !important;
+  color: #ffffff;
 }
+

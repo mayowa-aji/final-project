@@ -4,9 +4,14 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from werkzeug.exceptions import NotFound
 
-from models import db, Product, Customer, Order, OrderProduct
+from flask_cors import CORS
+
+from models import db, Product, Customer, Order, OrderProduct, Cart
+
+
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///newsletters.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
@@ -98,7 +103,6 @@ class ProductByID(Resource):
 
 api.add_resource(ProductByID, '/products/<int:product_id>/')
 
-
 class Customers(Resource):
     def get(self):
         customer_list = [customer.to_dict() for customer in Customer.query.all()]
@@ -186,6 +190,8 @@ api.add_resource(CustomerByID, '/customers/<int:customer_id>')
 class Orders(Resource):
     def get(self):
         order_list = [order.to_dict() for order in Customer.query.all()]
+
+        print(order_list)
 
         response = make_response(
             order_list,
@@ -321,16 +327,129 @@ class Login(Resource):
       email = request.json.get('email')
       print(email)
       password = request.json.get('password')
+      print(password)
 
       customer = Customer.query.filter(Customer.email==email).first()
       print(customer)
       if not customer or not customer.verify_password(password):
-        return jsonify(None), 401
+        return make_response(jsonify(None), 401)
 
     # Login successful, return customer data
-      return jsonify(customer.to_dict())
+      return make_response(jsonify(customer.to_dict()),200)
 
 api.add_resource(Login, '/login')
+
+class Register(Resource):
+   def post(self):
+      try:
+        request_json = request.get_json()
+
+
+        new_customer =  Customer(
+          first_name=request_json['first_name'],
+          last_name=request_json['last_name'],
+          email=request_json['email'],
+          password=request_json["password"]
+          )
+        db.session.add(new_customer)
+        db.session.commit()
+        return make_response("Register Successful", 200)
+      except (PermissionError):
+         return make_response("Registration Failed",401)
+
+api.add_resource(Register, '/register')
+
+
+class CartbyCustomerID(Resource):
+    def get(self,customer_id,):
+       customer = Customer.query.filter(Customer.customer_id == customer_id).first()
+
+       customer = customer.to_dict()
+
+       customer_cart = customer["carts"]
+    #    print(customer_cart)
+
+       return make_response(customer_cart, 200)
+
+    def post(self,customer_id):
+
+        product_json = request.get_json()
+        # print(product_json)
+        # customer_id = request_json['customer_id']
+        customer = Customer.query.get(customer_id)
+        # if not customer:
+        #   abort(404, 'The customer you were trying to update was not found')
+        product_id = product_json["product"]['product_id']
+        # product_in_cart = Cart.query.filter(Cart.product_id == product_id and Cart.customer_id == customer_id).first()
+        customer_cart = customer.carts
+        filtered_cart = [cart_item for cart_item in customer_cart if cart_item.product_id == product_id]
+        if filtered_cart:
+           filtered_cart[0].quantity += 1
+           db.session.add(filtered_cart[0])
+           db.session.commit()
+           customer = customer.to_dict()
+
+           customer_cart = customer["carts"]
+           return make_response(jsonify(customer_cart),200)
+        elif not filtered_cart:
+            new_cart = Cart(
+            customer_id=customer_id,
+            # cart_id=customer_id,
+            product_id=product_json["product_id"],
+            quantity=1,
+            unit_price=product_json['unit_price'],
+            )
+            customer.carts.append(new_cart)
+            db.session.add(new_cart)
+            db.session.commit()
+            customer = customer.to_dict()
+
+            customer_cart = customer["carts"]
+            return make_response(jsonify(customer_cart),200)
+        else:
+            return make_response({"error":"failure to add to cart"}, 404)
+
+api.add_resource(CartbyCustomerID, '/customer/<int:customer_id>/cart')
+
+
+class CartByCustomerIdAndByProductId(Resource):
+    def patch(self,customer_id,product_id):
+        product_json = request.get_json()
+        try:
+            customer = Customer.query.get(customer_id)
+            new_quantity = product_json['quantity']
+            customer_cart = customer.carts
+            cart_item_to_update = [cart_item for cart_item in customer_cart if cart_item.product_id == product_id][0]
+            cart_item_to_update.quantity = new_quantity
+            db.session.add(cart_item_to_update)
+            db.session.commit()
+            customer = customer.to_dict()
+
+            customer_cart = customer["carts"]
+            return make_response(jsonify(customer_cart),200)
+        except IndexError:
+           customer = customer.to_dict()
+
+           customer_cart = customer["carts"]
+           return make_response(jsonify(customer_cart),404)
+    def delete(self,customer_id,product_id):
+       try:
+          customer = Customer.query.get(customer_id)
+          customer_cart = customer.carts
+          cart_item_to_delete = [cart_item for cart_item in customer_cart if cart_item.product_id == product_id][0]
+          db.session.delete(cart_item_to_delete)
+          db.session.commit()
+
+          customer = customer.to_dict()
+
+          customer_cart = customer["carts"]
+          return make_response(jsonify(customer_cart),200)
+       except:
+          return make_response({"error":"failure to delete item"},404)
+
+
+
+api.add_resource(CartByCustomerIdAndByProductId, "/customer/<int:customer_id>/cart/<int:product_id>")
 
 if __name__ == '__main__':
     app.run(debug=True)

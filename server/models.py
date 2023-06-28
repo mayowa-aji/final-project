@@ -10,12 +10,15 @@ class Customer(db.Model):
     last_name = db.Column(db.String(255))
     email = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
-    address = db.Column(db.String(255))
-    city = db.Column(db.String(255))
-    state = db.Column(db.String(255))
-    zip_code = db.Column(db.String(255))
-    phone_number = db.Column(db.String(255))
+    address = db.Column(db.String(255), nullable=True)
+    city = db.Column(db.String(255), nullable=True)
+    state = db.Column(db.String(255), nullable=True)
+    zip_code = db.Column(db.String(255), nullable=True)
+    phone_number = db.Column(db.String(255), nullable=True)
     orders = db.relationship('Order', backref='customer')
+    carts = db.relationship('Cart', backref='customer')
+
+
 
     @property
     def password(self):
@@ -39,7 +42,9 @@ class Customer(db.Model):
             'state': self.state,
             'zip_code': self.zip_code,
             'phone_number': self.phone_number,
-            'orders': [order.to_dict() for order in self.orders]
+            'orders': [order.to_dict() for order in self.orders],
+            'carts': [cart.to_dict() for cart in self.carts],
+
         }
 
 
@@ -49,7 +54,7 @@ class Product(db.Model):
     product_name = db.Column(db.String(255))
     category = db.Column(db.String(255))
     description = db.Column(db.Text)
-    price = db.Column(db.Float)
+    unit_price = db.Column(db.Float)
     directions = db.Column(db.Text)
     image_url = db.Column(db.String(255))
     ingredients = db.relationship("ProductIngredient", backref="product")
@@ -62,7 +67,7 @@ class Product(db.Model):
           'product_name': self.product_name,
           # 'brand': self.brand,
           'category': self.category,
-          'price': self.price,
+          'unit_price': self.unit_price,
           'description': self.description,
           'image_url': self.image_url,
           "ingredients": [ingredient.to_dict() for ingredient in self.ingredients],
@@ -76,7 +81,7 @@ class Product(db.Model):
           'product_name': self.product_name,
           # 'brand': self.brand,
           'category': self.category,
-          'price': self.price,
+          'unit_price': self.unit_price,
           'description': self.description,
           'image_url': self.image_url,
           "ingredients": [ingredient.to_dict() for ingredient in self.ingredients],
@@ -154,6 +159,26 @@ class OrderProduct(db.Model):
             'unit_price': self.unit_price,
             'product': product.to_dict_summary()
         }
+
+
+class Cart(db.Model):
+    __tablename__ = 'cart'
+    cart_id = db.Column(db.Integer, primary_key=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('products.product_id'))
+    quantity = db.Column(db.Integer)
+    unit_price = db.Column(db.Float)
+
+    def to_dict(self):
+        product = Product.query.filter(Product.product_id == self.product_id).first()
+        return {
+            "cart_id": self.cart_id,
+            'product': product.to_dict_summary(),
+            'quantity': self.quantity,
+            'unit_price': self.unit_price,
+        }
+
+
 
 
 
